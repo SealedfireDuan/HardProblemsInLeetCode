@@ -125,3 +125,4 @@ public:
 Reference:
 https://leetcode.com/problems/redundant-connection-ii/discuss/108058/one-pass-disjoint-set-solution-with-explain
 https://leetcode.com/problems/redundant-connection-ii/discuss/108045/C++Java-Union-Find-with-explanation-O(n)
+https://www.cnblogs.com/grandyang/p/8445733.html
