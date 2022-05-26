@@ -1,4 +1,4 @@
-Problem description from LeetCode:
+/* Problem description from LeetCode:
 
 In this problem, a rooted tree is a directed graph such that, there is exactly one node (the root) for which all other nodes are descendants of this node, plus every node has exactly one parent, except for the root node which has no parents.
 The given input is a directed graph that started as a rooted tree with n nodes (with distinct values from 1 to n), with one additional directed edge added. The added edge has two different vertices chosen from 1 to n, and was not an edge that already existed.
@@ -28,9 +28,21 @@ All cases can be divided into 2 basic types:
 
 Type0:
 1/ All edges are in this close loop, and it it the easiest case.
-2/ Return the second edge that shares the same son.
+
+And there are 2 cases in this type0:
+
+Type0A:
+1/ Return the second edge that shares the same son.
 
 1 - >4
+|    ^
+v    | 
+2 - >3
+
+Type0B:
+1/ return the edge which closes the loop in the following case.
+
+1< - 4
 |    ^
 v    | 
 2 - >3
@@ -60,11 +72,20 @@ Type1B:
 v   ^
 3 > 4
 
+Considerations:
+1/ There may be 2 edges sharing the same son node: first and second.
+2/ There may be 1 edge which closes a loop.
+3/ The root node may be in the loop.
+
 Solution:
-1/ Find the 2 edges sharing the same son node: first and second.
-2/ If first can't be found, return the edge forming the loop, it is type1B.
-3/ Need to consider whether first or second should be returned.
-4/ Cut second after finding first and second.
+1/ Search for 2 edges sharing the same son: first and second, and cut off the edge second.
+2/ Then search for the loop.
+3/ Type0A and Type1A, there are first and second, but no loop, so return second.
+4/ Type0B, no first or second, a loop, so return the edge closes the loop.
+5/ Type1A, with first and second, but the sequence matters.
+6/ When initial second closes the loop, now there is no loop, so second should be returned.
+7/ When first closes the loop, now the loop can be found, so fist should be returned.
+*/
 
 class Solution 
 {
